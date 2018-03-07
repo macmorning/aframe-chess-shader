@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>aframe chess</title>
+    <script src="https://rawgit.com/ngokevin/aframe/animationbugless/dist/aframe-master.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/chessboard.js"></script>
+    </head>
+    <body style='margin : 0px; overflow: hidden;'>
+        <a-scene embedded  light="defaultLightsEnabled: false">
+            <a-assets>
+                <a-mixin id="tile" 
+                    geometry="primitive: box; height: 0.2;">
+                </a-mixin>
+
+                <a-mixin id="piece" scale="0.012 0.012 0.012" position="0 0.03 0"></a-mixin>
+
+                <a-asset-item id="pawnObj" src="assets/pawn.obj"></a-asset-item>
+                <a-asset-item id="knightObj" src="assets/knight.obj"></a-asset-item>
+                <a-asset-item id="rookObj" src="assets/rook.obj"></a-asset-item>
+                <a-asset-item id="bishopObj" src="assets/bishop.obj"></a-asset-item>
+                <a-asset-item id="kingObj" src="assets/king.obj"></a-asset-item>
+                <a-asset-item id="queenObj" src="assets/queen.obj"></a-asset-item>
+                <a-asset-item id="whiteMtl" src="assets/white.mtl"></a-asset-item>
+                <a-asset-item id="blackMtl" src="assets/black.mtl"></a-asset-item>
+                <a-mixin id="blackpawn" obj-model="obj: #pawnObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="blackknight" obj-model="obj: #knightObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="blackrook" obj-model="obj: #rookObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="blackbishop" obj-model="obj: #bishopObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="blackking" obj-model="obj: #kingObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="blackqueen" obj-model="obj: #queenObj; mtl: #blackMtl"></a-mixin>
+                <a-mixin id="whitepawn" obj-model="obj: #pawnObj; mtl: #whiteMtl"></a-mixin>
+                <a-mixin id="whiteknight" obj-model="obj: #knightObj; mtl: #whiteMtl"></a-mixin>
+                <a-mixin id="whiterook" obj-model="obj: #rookObj; mtl: #whiteMtl"></a-mixin>
+                <a-mixin id="whitebishop" obj-model="obj: #bishopObj; mtl: #whiteMtl"></a-mixin>
+                <a-mixin id="whiteking" obj-model="obj: #kingObj; mtl: #whiteMtl"></a-mixin>
+                <a-mixin id="whitequeen" obj-model="obj: #queenObj; mtl: #whiteMtl"></a-mixin>
+            </a-assets>
+
+            <a-entity light="type: point; color: white; intensity: 1" position="-4 7 -5"></a-entity> 
+            <a-entity light="type: ambient; color: white; intensity: 0.4"></a-entity> 
+
+            <a-box static-body board id="boardContainer" width="0.1" depth="0.1" height="0.01" position="0 0 0"></a-box>
+            <a-sphere material-grid-glitch="color: blue;"
+            radius="0.2"
+            position="0 1.5 -1">
+            </a-sphere>
+
+            <!-- Define a static camera -->
+            <a-camera-static/>
+        </a-scene>
+    </body>
+</html>
