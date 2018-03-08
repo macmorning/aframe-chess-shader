@@ -113,7 +113,9 @@ void main() {
   );
 }`;
 AFRAME.registerComponent("material-grid-glitch", {
-    schema: {color: {type: "color"}},
+    schema: {
+        color: {type: "color"}
+    },
 
     /**
      * Creates a new THREE.ShaderMaterial using the two shaders defined
