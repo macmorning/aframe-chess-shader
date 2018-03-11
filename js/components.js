@@ -81,6 +81,35 @@ AFRAME.registerComponent("board", {
     }
 });
 
+AFRAME.registerComponent("my-custom", {
+    schema: {
+        dashSize: {default: 3},
+        lineWidth: {default: 1}
+    },
+
+    /**
+     * Creates a new THREE.ShaderMaterial using the two shaders defined
+     * in vertex.glsl and fragment.glsl.
+     */
+    init: function () {
+        var material = new THREE.MeshToonMaterial({
+            shininess: 1.0
+        });
+        this.material = material;
+
+        this.update();
+        // this.el.addEventListener("model-loaded", () => this.applyToMesh());
+    },
+
+    /**
+     * Update the ShaderMaterial when component data changes.
+     */
+    update: function () {
+        this.material.dashsize = this.data.dashsize;
+        this.material.linewidth = this.data.linewidth;
+    }
+});
+
 const vertexShader = `
 // vertex.glsl
 
@@ -112,6 +141,7 @@ void main() {
     sin(time)
   );
 }`;
+
 AFRAME.registerComponent("material-grid-glitch", {
     schema: {
         color: {type: "color"}
@@ -172,7 +202,7 @@ AFRAME.registerComponent("tile", {
     },
     init: function () {
         this.el.setAttribute("mixin", "tile");
-        this.el.setAttribute(" material-grid-glitch=", "color: " + this.data.color);
+        this.el.setAttribute("material", "color: " + this.data.color);
     }
 });
 

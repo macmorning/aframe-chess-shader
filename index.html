@@ -1,13 +1,13 @@
 <html>
   <head>
     <title>aframe chess</title>
-    <script src="https://rawgit.com/ngokevin/aframe/animationbugless/dist/aframe-master.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <!--script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script-->
     <script src="js/components.js"></script>
     <script src="js/chessboard.js"></script>
     </head>
     <body style='margin : 0px; overflow: hidden;'>
-        <a-scene embedded  light="defaultLightsEnabled: false">
+        <a-scene light="defaultLightsEnabled: false">
             <a-assets>
                 <a-mixin id="tile" 
                     geometry="primitive: box; height: 0.2;">
@@ -38,13 +38,21 @@
             </a-assets>
 
             <a-entity light="type: point; color: white; intensity: 1" position="-4 7 -5"></a-entity> 
-            <a-entity light="type: ambient; color: white; intensity: 0.4"></a-entity> 
+            <a-entity light="type: ambient; color: white; intensity: 0.4"></a-entity>
 
             <a-box static-body board id="boardContainer" width="0.1" depth="0.1" height="0.01" position="0 0 0"></a-box>
-            <a-sphere material-grid-glitch="color: blue;"
-            radius="0.2"
+            <a-box material="color:green"
+            width="0.2" depth="0.2" height="0.2"
             position="0 1.5 -1">
-            </a-sphere>
+            </a-box>
+            <a-box material-grid-glitch="color: blue;"
+            width="0.2" depth="0.2" height="0.2"
+            position="1 1.5 -1">
+            </a-box>
+            <a-box my-custom
+            width="0.2" depth="0.2" height="0.2"
+            position="-1 1.5 -1">
+            </a-box>
 
             <!-- Define a static camera -->
             <a-camera-static/>
